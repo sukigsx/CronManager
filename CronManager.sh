@@ -479,11 +479,10 @@ borrar_tarea() {
     echo ""
 
     CRON_CONTENT=$(crontab -l 2>/dev/null | grep -v '^\s*$' | grep -v '^#' | sed 's/^/   /')
-    CRON_TMP=$(crontab -l 2>/dev/null | grep -v '^\s*$' | grep -v '^#' | sed 's/^/   /')
     if [[ -z "$CRON_CONTENT" ]]; then
         echo -e "${rojo} No hay tareas programadas en el crontab de${borra_colores} $(whoami)"; sleep 2
     else
-        #crontab -l 2>/dev/null > $CRON_TMP || { echo -e "${rojo}No hay tareas.${borra_colores}"; return; }
+        crontab -l 2>/dev/null > $CRON_TMP || { echo -e "${rojo}No hay tareas.${borra_colores}"; return; }
         nl -ba $CRON_TMP
         echo ""
 
