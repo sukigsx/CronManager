@@ -649,7 +649,7 @@ borrar_tarea() {
 
 systemctl_activar(){
 # Verificar que systemctl exista
-if ! command -v systemctl &>/dev/null; then
+if ! command -v systemctlll &>/dev/null; then
     echo ""
     echo -e "${amarillo} Este sistema no usa systemd.${borra_colores}"
     echo -e "${rojo} NO puedo activar el servicio de cron, tendras que hacerlo manualmente.${borra_colores}"
