@@ -503,7 +503,7 @@ crear_tarea() {
         # Añadir cron
         crontab -l &> /dev/null > "$CRON_TMP"
         echo "$macro $comando" >> "$CRON_TMP"
-        crontab "$CRON_TMP"
+        crontab "$CRON_TMP" &> /dev/null
 
         echo -e "${verde} Tarea creada con macro.${borra_colores}"
         sleep 2; read p
