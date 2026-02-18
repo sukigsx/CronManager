@@ -647,11 +647,56 @@ borrar_tarea() {
     fi
 }
 
+systemctl_activar(){
+# Verificar que systemctl exista
+if ! command -v systemctl &>/dev/null; then
+    echo ""
+    echo -e "${amarillo} Este sistema no usa systemd.${borra_colores}"
+    echo -e "${rojo} NO puedo activar el servicio de cron, tendras que hacerlo manualmente.${borra_colores}"
+    exit 1
+fi
+
+# Posibles nombres del servicio
+servicios=("cron" "cronie" "crond")
+
+encontrado=0
+
+for servicio in "${servicios[@]}"; do
+    if systemctl list-unit-files | grep -q "^${servicio}\.service"; then
+        encontrado=1
+        echo "Servicio detectado: $servicio"
+
+        if systemctl is-active --quiet "$servicio"; then
+            echo "✔ El servicio $servicio ya está ACTIVO."
+        else
+            echo "Activando y habilitando $servicio..."
+            sudo systemctl enable "$servicio"
+            sudo systemctl start "$servicio"
+
+            if systemctl is-active --quiet "$servicio"; then
+                echo "✔ Servicio $servicio activado correctamente."
+            else
+                echo "✘ No se pudo activar el servicio."
+                exit 1
+            fi
+        fi
+        break
+    fi
+done
+
+if [ "$encontrado" -eq 0 ]; then
+    echo "No se encontró ningún servicio de cron instalado."
+    echo "Instálalo primero (ej: cronie, cron, etc.)."
+    exit 1
+fi
+
+}
 
 # Bucle principal
 while true; do
     clear
     menu_info
+    systemctl_activar
     mostrar_menu
     case $opcion in
          1) crear_tarea ;;
