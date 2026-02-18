@@ -506,7 +506,7 @@ crear_tarea() {
         crontab "$CRON_TMP" &> /dev/null
 
         echo -e "${verde} Tarea creada con macro.${borra_colores}"
-        sleep 2; read p
+        sleep 2
         return
         ;;
 
@@ -641,7 +641,7 @@ borrar_tarea() {
             sed -i "${n}d" "$CRON_TMP"
         done
 
-        crontab "$CRON_TMP"
+        crontab "$CRON_TMP" &> /dev/null
         echo ""
         echo -e "${verde} Tareas válidas eliminadas.${borra_colores}"; sleep 2
     fi
