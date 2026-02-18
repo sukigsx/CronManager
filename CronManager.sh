@@ -667,14 +667,14 @@ for servicio in "${servicios[@]}"; do
         #echo "Servicio detectado: $servicio"
 
         if systemctl is-active --quiet "$servicio"; then
-            #echo "✔ El servicio $servicio ya está ACTIVO."
+            echo "✔ El servicio $servicio ya está ACTIVO."
         else
-            #echo "Activando y habilitando $servicio..."
+            echo "Activando y habilitando $servicio..."
             sudo systemctl enable "$servicio"
             sudo systemctl start "$servicio"
 
             if systemctl is-active --quiet "$servicio"; then
-                #echo "✔ Servicio $servicio activado correctamente."
+                echo "✔ Servicio $servicio activado correctamente."
             else
                 echo -e "${amarillo} No se pudo activar el servicio.${borra_colores}"
                 echo -e "${rojo} NO puedo activar el servicio de cron, tendras que hacerlo manualmente.${borra_colores}"
