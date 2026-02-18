@@ -670,7 +670,7 @@ for servicio in "${servicios[@]}"; do
             echo -e " El servicio${azul} $servicio ${borra_colores}está ACTIVO."
             echo ""
         else
-            echo "Activando y habilitando $servicio..."
+            echo -e " Activando y habilitando${azul} $servicio${borra_colores}..."
             sudo systemctl enable "$servicio" > /dev/null 2>&1
             sudo systemctl start "$servicio" > /dev/null 2>&1
 
