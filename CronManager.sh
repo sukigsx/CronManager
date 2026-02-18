@@ -501,7 +501,7 @@ crear_tarea() {
         done
 
         # Añadir cron
-        crontab -l 2>/dev/null > "$CRON_TMP"
+        crontab -l &> /dev/null > "$CRON_TMP"
         echo "$macro $comando" >> "$CRON_TMP"
         crontab "$CRON_TMP"
 
