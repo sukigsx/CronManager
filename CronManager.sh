@@ -643,7 +643,7 @@ borrar_tarea() {
 
         crontab "$CRON_TMP" &> /dev/null
         echo ""
-        echo -e "${verde} Tareas válidas eliminadas.${borra_colores}"; sleep 2
+        echo -e "${verde} Tarea o tareas eliminadas correctamente.${borra_colores}"; sleep 2
     fi
 }
 
@@ -696,6 +696,11 @@ fi
 
 }
 
+editar_cron(){
+    export EDITOR=nano
+    crontab -e
+}
+
 # Bucle principal
 while true; do
     clear
@@ -705,7 +710,8 @@ while true; do
     case $opcion in
          1) crear_tarea ;;
          2) borrar_tarea ;;
-         3) ayuda_cron ;;
+         3) editar_cron ;;
+         4) ayuda_cron ;;
         99) ctrl_c ;;
         *) echo ""; echo -e "${amarillo} Opción inválida${borra_colores}"; sleep 2 ;;
     esac
