@@ -4,8 +4,8 @@
 # con export son las variables necesarias para exportar al los siguientes script
 #variables para el menu_info
 
-export NombreScript="Ejecutar_scripts"
-export DescripcionDelScript="Control interactivo de tus scripts"
+export NombreScript="CronManager"
+export DescripcionDelScript="Gestor de Crontab en Bash"
 export Correo="scripts@mbbsistemas.es"
 export Web="https://repositorio.mbbsistemas.es"
 export version="1.0"
@@ -356,7 +356,8 @@ mostrar_menu() {
     echo ""
     echo -e "  ${azul}1)${borra_colores} Crear nueva tarea"
     echo -e "  ${azul}2)${borra_colores} Borrar una tarea"
-    echo -e "  ${azul}3)${borra_colores} Ayuda cron (@reboot, @yearly...)"
+    echo -e "  ${azul}2)${borra_colores} Editar crontab"
+    echo -e "  ${azul}4)${borra_colores} Ayuda cron (@reboot, @yearly...)"
     echo ""
     echo -e " ${azul}99)${borra_colores} Salir"
     echo
