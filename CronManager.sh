@@ -649,10 +649,10 @@ borrar_tarea() {
 
 systemctl_activar(){
 # Verificar que systemctl exista
-if ! command -v systemctlll &>/dev/null; then
-    echo ""
+if ! command -v systemctl &>/dev/null; then
     echo -e "${amarillo} Este sistema no usa systemd.${borra_colores}"
     echo -e "${rojo} NO puedo activar el servicio de cron, tendras que hacerlo manualmente.${borra_colores}"
+    echo ""
     exit 1
 fi
 
@@ -664,19 +664,21 @@ encontrado=0
 for servicio in "${servicios[@]}"; do
     if systemctl list-unit-files | grep -q "^${servicio}\.service"; then
         encontrado=1
-        echo "Servicio detectado: $servicio"
+        #echo "Servicio detectado: $servicio"
 
         if systemctl is-active --quiet "$servicio"; then
-            echo "✔ El servicio $servicio ya está ACTIVO."
+            #echo "✔ El servicio $servicio ya está ACTIVO."
         else
-            echo "Activando y habilitando $servicio..."
+            #echo "Activando y habilitando $servicio..."
             sudo systemctl enable "$servicio"
             sudo systemctl start "$servicio"
 
             if systemctl is-active --quiet "$servicio"; then
-                echo "✔ Servicio $servicio activado correctamente."
+                #echo "✔ Servicio $servicio activado correctamente."
             else
-                echo "✘ No se pudo activar el servicio."
+                echo -e "${amarillo} No se pudo activar el servicio.${borra_colores}"
+                echo -e "${rojo} NO puedo activar el servicio de cron, tendras que hacerlo manualmente.${borra_colores}"
+                echo ""
                 exit 1
             fi
         fi
@@ -685,8 +687,8 @@ for servicio in "${servicios[@]}"; do
 done
 
 if [ "$encontrado" -eq 0 ]; then
-    echo "No se encontró ningún servicio de cron instalado."
-    echo "Instálalo primero (ej: cronie, cron, etc.)."
+    echo -e "${amarillo}No se encontró ningún servicio de cron instalado.${borra_colores}"
+    echo ""
     exit 1
 fi
 
