@@ -37,6 +37,8 @@ nombre_carpeta_repositorio="CronManager" #poner el nombre de la carpeta cuando s
         [jq]="jq"
         [sed]="sed"
         [crontab]="cron"
+        [xdg-user-dir]="xdg-user-dirs"
+        [wget]="wget"
     )
 
 
