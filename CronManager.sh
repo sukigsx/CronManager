@@ -350,7 +350,7 @@ mostrar_menu() {
     echo ""
     echo -e "  ${azul}1)${borra_colores} Crear nueva tarea"
     echo -e "  ${azul}2)${borra_colores} Borrar una tarea"
-    echo -e "  ${azul}2)${borra_colores} Editar crontab"
+    echo -e "  ${azul}3)${borra_colores} Editar crontab"
     echo -e "  ${azul}4)${borra_colores} Ayuda cron (@reboot, @yearly...)"
     echo ""
     echo -e " ${azul}99)${borra_colores} Salir"
