@@ -30,9 +30,8 @@ git clone https://github.com/sukigsx/CronManager.git
 ```
 Descarga directa con WGET
 ```
-wget -O CronManager.sh https://raw.githubusercontent.com/sukigsx/configurar_sshd/refs/heads/main/Configurar_sshd.sh && chmod +x CronManager.sh
-
-
+wget -O CronManager.sh https://raw.githubusercontent.com/sukigsx/CronManager/refs/heads/main/CronManager.sh && chmod +x CronManager.sh
+```
 Con script de sukigsx
 ```bash
 git clone https://github.com/sukigsx/ejecutar_scripts.git
